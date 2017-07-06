@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ec6807a79ea44c292c3475286170c4c" Name="Diagram1" ZoomLevel="100" DisplayType="false" ShowGrid="true">
+        <EntityTypeShape EntityType="Model.ClientTool" Width="1.5" PointX="6.125" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Honda_Dealer_Vehicle_Inventory" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.InvMgmtVINList" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Location" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocationsVehicle" Width="1.625" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RegionTree" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.svcLog" Width="1.5" PointX="4.125" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tests_Core" Width="1.5" PointX="0.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ToolServiceUse" Width="1.5" PointX="4.125" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClientRole" Width="1.5" PointX="9.375" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BMISClientProfile" Width="2" PointX="8.375" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ToolAuthorization" Width="1.5" PointX="9.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TreeTranslation" Width="1.5" PointX="6.875" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.ToolServiceUseBMISClientProfile" />
+        <AssociationConnector Association="Model.TreeTranslationBMISClientProfile" />
+        <AssociationConnector Association="Model.ClientToolBMISClientProfile" />
+        <AssociationConnector Association="Model.LocationBMISClientProfile" />
+        <AssociationConnector Association="Model.LocationsVehicleBMISClientProfile" />
+        <AssociationConnector Association="Model.svcLogBMISClientProfile" />
+        <AssociationConnector Association="Model.InvMgmtVINListBMISClientProfile" />
+        <AssociationConnector Association="Model.AspNetUserClientRoleBMISClientProfile" />
+        <AssociationConnector Association="Model.InvMgmtVINListLocation" />
+        <AssociationConnector Association="Model.InvMgmtVINListLocation1" />
+        <AssociationConnector Association="Model.InvMgmtVINListLocationsVehicle" />
+        <AssociationConnector Association="Model.Honda_Dealer_Vehicle_InventoryLocationsVehicle" />
+        <AssociationConnector Association="Model.Tests_CoreBMISClientProfile" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Model.Tests_CoreLocation" />
+        <AssociationConnector Association="Model.ToolAuthorizationBMISClientProfile" />
+        <AssociationConnector Association="Model.ToolAuthorizationClientTool" />
+        <AssociationConnector Association="Model.svcLogClientTool" />
+        <AssociationConnector Association="Model.ToolServiceUseLocation" />
+        <AssociationConnector Association="Model.ToolServiceUseClientTool" />
+        <AssociationConnector Association="Model.Tests_CoreClientTool" />
+        <AssociationConnector Association="Model.RegionTreeBMISClientProfile" />
+        <AssociationConnector Association="Model.RegionTreeLocation" />
+        <AssociationConnector Association="Model.RegionTreeRegionTree" />
+      </Diagram>
+      <Diagram DiagramId="cdd07478bc3c43c39af88343e2217952" Name="Diagram2" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

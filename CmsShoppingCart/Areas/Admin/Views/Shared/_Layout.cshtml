@@ -16,18 +16,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               <a href="/admin/dashboard" class="navbar-brand">Dashboard</a>
+                <a href="/admin/dashboard" class="navbar-brand">Dashboard</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/admin/pages">Pages</a></li>
                     <li><a href="/admin/pages/EditSidebar">Sidebar</a></li>
+                    <li><a href="/admin/shop/Categories">Categories</a></li>
+                    <li><a href="/admin/shop/Products">Products</a></li>
+                    <li><a href="/admin/shop/Orders">Orders</a></li>
                 </ul>
                 <ul class="navbar-right">
-                    <li>
-                        <a href="/" class="navbar-brand" target="_blank">CmsShoppingCart</a>
-
-                    </li>
+                    <li><a href="/" class="navbar-brand" target="_blank">CmsShoppingCart</a></li>
                 </ul>
             </div>
         </div>
@@ -35,7 +35,6 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        
     </div>
 
     @Scripts.Render("~/bundles/scripts")

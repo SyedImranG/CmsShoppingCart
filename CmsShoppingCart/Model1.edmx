@@ -1,0 +1,1101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClientTools">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="ToolType" />
+            <PropertyRef Name="SerialNumber" />
+            <PropertyRef Name="SoftwareVersionNumber" />
+            <PropertyRef Name="LastComm" />
+          </Key>
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="ToolType" Type="tinyint" Nullable="false" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SoftwareVersionNumber" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="LastComm" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Honda_Dealer_Vehicle_Inventory">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="TRIM" Type="nvarchar" MaxLength="10" />
+          <Property Name="COLOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MANUFACTURED_DATE" Type="datetime" />
+          <Property Name="MANUFACTURED_PLANT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIVISION" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="DEALER_CODE" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="RECEIVED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="STOCK_NUMBER" Type="nvarchar" MaxLength="5" />
+          <Property Name="SOLD_DATE" Type="datetime" />
+          <Property Name="RPT_DATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvMgmtVINList">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="VinNumber" />
+          </Key>
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="LocationID" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="VinNumber" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="PilotDate" Type="datetime" Nullable="false" />
+          <Property Name="OrigDeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="GoLiveDate" Type="datetime" Nullable="false" />
+          <Property Name="DecisionCatagoryOverride" Type="nvarchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="OEMID" />
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="OEMID" Type="smallint" Nullable="false" />
+          <Property Name="LocationID" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="LocAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocCity" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="LocState" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LocZip" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="GeoLocation" Type="geography" />
+          <Property Name="Region" Type="nvarchar" MaxLength="255" />
+          <Property Name="InActive" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocationsVehicles">
+          <Key>
+            <PropertyRef Name="OEMID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="VIN" />
+            <PropertyRef Name="VehicleMake" />
+            <PropertyRef Name="VehicleModel" />
+            <PropertyRef Name="ModelYear" />
+          </Key>
+          <Property Name="OEMID" Type="smallint" Nullable="false" />
+          <Property Name="LocationID" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="VIN" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="VehicleMake" Type="bigint" Nullable="false" />
+          <Property Name="VehicleModel" Type="bigint" Nullable="false" />
+          <Property Name="ModelYear" Type="int" Nullable="false" />
+          <Property Name="Make" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FirstSeen" Type="datetime" Nullable="false" />
+          <Property Name="LastSeen" Type="datetime" Nullable="false" />
+          <Property Name="ExcludeVIN" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionTree">
+          <Key>
+            <PropertyRef Name="NodeID" />
+          </Key>
+          <Property Name="NodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="Lvl" Type="int" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="svcLog">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="TestDatetime" />
+            <PropertyRef Name="SerialNumber" />
+          </Key>
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="TestDatetime" Type="datetime" Nullable="false" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LogType" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="2000" />
+          <Property Name="ClientIP" Type="varchar" MaxLength="20" />
+          <Property Name="ClientHostName" Type="varchar" MaxLength="50" />
+          <Property Name="Firmware" Type="varchar" MaxLength="13" />
+          <Property Name="ServiceFamily" Type="bigint" />
+          <Property Name="ServiceFunction" Type="bigint" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="ToolType" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="varchar" MaxLength="17" />
+        </EntityType>
+        <EntityType Name="Tests_Core">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="TestDatetime" />
+            <PropertyRef Name="TestIndex" />
+          </Key>
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="LocationID" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="TestDatetime" Type="datetime" Nullable="false" />
+          <Property Name="TestIndex" Type="int" Nullable="false" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SoftwareVersionNumber" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="SoftwareBuildNumber" Type="int" Nullable="false" />
+          <Property Name="AlgorithmVersion" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="ToolType" Type="tinyint" Nullable="false" />
+          <Property Name="MacAddress" Type="varchar" MaxLength="17" />
+          <Property Name="TestType" Type="tinyint" Nullable="false" />
+          <Property Name="TestLocation" Type="tinyint" />
+          <Property Name="Language" Type="tinyint" />
+          <Property Name="FinalMeasuredVoltage" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="FinalMeasuredCapacity" Type="int" Nullable="false" />
+          <Property Name="FinalDisplayedMeausredCap" Type="varchar" MaxLength="4" />
+          <Property Name="BatteryDecision" Type="tinyint" Nullable="false" />
+          <Property Name="BatteryStateOfCharge" Type="tinyint" />
+          <Property Name="BatteryStateOfHealth" Type="tinyint" />
+          <Property Name="BatterySohPassFailPoint" Type="tinyint" />
+          <Property Name="BatterySohMarginalPoint" Type="tinyint" />
+          <Property Name="BatteryUnits" Type="tinyint" Nullable="false" />
+          <Property Name="TechnicianID" Type="nvarchar" MaxLength="17" />
+          <Property Name="BatteryPostType" Type="tinyint" />
+          <Property Name="BatteryLocation" Type="tinyint" />
+          <Property Name="BatteryVehicleLocation" Type="tinyint" />
+          <Property Name="BatteryType" Type="tinyint" />
+          <Property Name="TestApplication" Type="tinyint" />
+          <Property Name="VehicleType" Type="tinyint" />
+          <Property Name="RatedVoltage" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="RatedCapacity" Type="int" Nullable="false" />
+          <Property Name="RatedCapacityPntext" Type="varchar" MaxLength="17" />
+          <Property Name="SurfaceChargeDetected" Type="tinyint" />
+          <Property Name="ChargeQuestion" Type="tinyint" />
+          <Property Name="AboveFreezing" Type="tinyint" />
+          <Property Name="BatteryTemperature" Type="int" Nullable="false" />
+          <Property Name="BatteryTemperatureUnits" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Testcode1" Type="varchar" MaxLength="35" />
+          <Property Name="Testcode2" Type="varchar" MaxLength="35" />
+          <Property Name="Testcode3" Type="varchar" MaxLength="35" />
+          <Property Name="VinNumber" Type="varchar" MaxLength="17" />
+          <Property Name="RoNumber" Type="varchar" MaxLength="21" />
+          <Property Name="DealerVehicleStockNumber" Type="varchar" MaxLength="17" />
+          <Property Name="BatteryMfgDateCode" Type="date" />
+          <Property Name="BatteryAge" Type="int" />
+          <Property Name="RfidTagSn" Type="varchar" MaxLength="21" />
+          <Property Name="BatterySn" Type="varchar" MaxLength="21" />
+          <Property Name="BatteryUpc" Type="varchar" MaxLength="84" />
+          <Property Name="UserScreenAnswer1" Type="nvarchar" MaxLength="17" />
+          <Property Name="UserScreenAnswer2" Type="nvarchar" MaxLength="17" />
+          <Property Name="UserScreenAnswer3" Type="nvarchar" MaxLength="17" />
+          <Property Name="DeepScanResult" Type="tinyint" />
+          <Property Name="ShopinfoKeyID" Type="uniqueidentifier" />
+          <Property Name="UserScreensKeyID" Type="uniqueidentifier" />
+          <Property Name="CouponsKeyID" Type="uniqueidentifier" />
+          <Property Name="DmmKeyID" Type="uniqueidentifier" />
+          <Property Name="CableDropKeyID" Type="uniqueidentifier" />
+          <Property Name="ChargingTestKeyID" Type="uniqueidentifier" />
+          <Property Name="SystemTestKeyID" Type="uniqueidentifier" />
+          <Property Name="PositiveCableResistance" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="NegativeCableResistance" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="VehicleMake" Type="bigint" />
+          <Property Name="VehicleModel" Type="bigint" />
+          <Property Name="TransmittedOn" Type="datetime" />
+          <Property Name="ImportedOn" Type="datetime" />
+          <Property Name="SrcFileName" Type="varchar" MaxLength="100" />
+          <Property Name="VehicleYear" Type="int" />
+          <Property Name="DistributorNumber" Type="varchar" MaxLength="35" />
+          <Property Name="WasBatteryOriginal" Type="tinyint" />
+          <Property Name="VehicleMileage" Type="bigint" />
+          <Property Name="DCAResults" Type="tinyint" />
+          <Property Name="DCAStopCase" Type="tinyint" />
+          <Property Name="DCAVoltageSlope" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="DCAVoltageDrop" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="VehicleIDNumber" Type="varchar" MaxLength="21" />
+          <Property Name="VinCaptureMethod" Type="tinyint" />
+          <Property Name="VehicleTechnologyType" Type="tinyint" />
+          <Property Name="VehicleMileageUnits" Type="tinyint" />
+          <Property Name="VehicleColor" Type="int" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="256" />
+          <Property Name="VehicleLicensePlate" Type="varchar" MaxLength="21" />
+          <Property Name="IsAddedToDecisionCounts" Type="bit" Nullable="false" />
+          <Property Name="IsAddedToProcessPerformanceCounts" Type="bit" Nullable="false" />
+          <Property Name="ConductanceDecision" Type="tinyint" />
+          <Property Name="EngineTemperature" Type="int" />
+        </EntityType>
+        <EntityType Name="ToolServiceUse">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="ToolType" />
+            <PropertyRef Name="SerialNumber" />
+            <PropertyRef Name="SoftwareVersionNumber" />
+            <PropertyRef Name="ServiceFamily" />
+            <PropertyRef Name="ServiceFunction" />
+            <PropertyRef Name="TransmittedOn" />
+          </Key>
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="LocationID" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="ToolType" Type="int" Nullable="false" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SoftwareVersionNumber" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="ServiceFamily" Type="bigint" Nullable="false" />
+          <Property Name="ServiceFunction" Type="bigint" Nullable="false" />
+          <Property Name="TransmittedOn" Type="datetime" Nullable="false" />
+          <Property Name="ClientIP" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="AspNetUserClientRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientId" Type="smallint" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BMISClientProfile">
+          <Key>
+            <PropertyRef Name="OEMID" />
+          </Key>
+          <Property Name="OEMID" Type="smallint" Nullable="false" />
+          <Property Name="Descr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FeatureSet" Type="binary" MaxLength="8" />
+          <Property Name="AccessToDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToolAuthorization">
+          <Key>
+            <PropertyRef Name="SerialNumber" />
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="SerialNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="AuthorizationCode" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TreeTranslations">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LangNum" />
+            <PropertyRef Name="TableNum" />
+            <PropertyRef Name="TransNum" />
+          </Key>
+          <Property Name="ClientID" Type="smallint" Nullable="false" />
+          <Property Name="LangNum" Type="tinyint" Nullable="false" />
+          <Property Name="TableNum" Type="int" Nullable="false" />
+          <Property Name="TransNum" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ClientTools" EntityType="Self.ClientTools" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="Honda_Dealer_Vehicle_Inventory" EntityType="Self.Honda_Dealer_Vehicle_Inventory" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="InvMgmtVINList" EntityType="Self.InvMgmtVINList" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="LocationsVehicles" EntityType="Self.LocationsVehicles" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="RegionTree" EntityType="Self.RegionTree" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="svcLog" EntityType="Self.svcLog" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="Tests_Core" EntityType="Self.Tests_Core" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="ToolServiceUse" EntityType="Self.ToolServiceUse" Schema="bmis" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClientRoles" EntityType="Self.AspNetUserClientRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BMISClientProfile" EntityType="Self.BMISClientProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToolAuthorization" EntityType="Self.ToolAuthorization" Schema="tool" store:Type="Tables" />
+          <EntitySet Name="TreeTranslations" EntityType="Self.TreeTranslations" Schema="trans" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClientTools" EntityType="Model.ClientTool" />
+          <EntitySet Name="Honda_Dealer_Vehicle_Inventory" EntityType="Model.Honda_Dealer_Vehicle_Inventory" />
+          <EntitySet Name="InvMgmtVINLists" EntityType="Model.InvMgmtVINList" />
+          <EntitySet Name="Locations" EntityType="Model.Location" />
+          <EntitySet Name="LocationsVehicles" EntityType="Model.LocationsVehicle" />
+          <EntitySet Name="RegionTrees" EntityType="Model.RegionTree" />
+          <EntitySet Name="svcLogs" EntityType="Model.svcLog" />
+          <EntitySet Name="Tests_Core" EntityType="Model.Tests_Core" />
+          <EntitySet Name="ToolServiceUses" EntityType="Model.ToolServiceUse" />
+          <EntitySet Name="AspNetUserClientRoles" EntityType="Model.AspNetUserClientRole" />
+          <EntitySet Name="BMISClientProfiles" EntityType="Model.BMISClientProfile" />
+          <EntitySet Name="ToolAuthorizations" EntityType="Model.ToolAuthorization" />
+          <EntitySet Name="TreeTranslations" EntityType="Model.TreeTranslation" />
+          <AssociationSet Name="ToolServiceUseBMISClientProfile" Association="Model.ToolServiceUseBMISClientProfile">
+            <End Role="ToolServiceUse" EntitySet="ToolServiceUses" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="TreeTranslationBMISClientProfile" Association="Model.TreeTranslationBMISClientProfile">
+            <End Role="TreeTranslation" EntitySet="TreeTranslations" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="ClientToolBMISClientProfile" Association="Model.ClientToolBMISClientProfile">
+            <End Role="ClientTool" EntitySet="ClientTools" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="LocationBMISClientProfile" Association="Model.LocationBMISClientProfile">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="LocationsVehicleBMISClientProfile" Association="Model.LocationsVehicleBMISClientProfile">
+            <End Role="LocationsVehicle" EntitySet="LocationsVehicles" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="svcLogBMISClientProfile" Association="Model.svcLogBMISClientProfile">
+            <End Role="svcLog" EntitySet="svcLogs" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="InvMgmtVINListBMISClientProfile" Association="Model.InvMgmtVINListBMISClientProfile">
+            <End Role="InvMgmtVINList" EntitySet="InvMgmtVINLists" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserClientRoleBMISClientProfile" Association="Model.AspNetUserClientRoleBMISClientProfile">
+            <End Role="AspNetUserClientRole" EntitySet="AspNetUserClientRoles" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="InvMgmtVINListLocation" Association="Model.InvMgmtVINListLocation">
+            <End Role="InvMgmtVINList" EntitySet="InvMgmtVINLists" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="InvMgmtVINListLocation1" Association="Model.InvMgmtVINListLocation1">
+            <End Role="InvMgmtVINList" EntitySet="InvMgmtVINLists" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="InvMgmtVINListLocationsVehicle" Association="Model.InvMgmtVINListLocationsVehicle">
+            <End Role="InvMgmtVINList" EntitySet="InvMgmtVINLists" />
+            <End Role="LocationsVehicle" EntitySet="LocationsVehicles" />
+          </AssociationSet>
+          <AssociationSet Name="Honda_Dealer_Vehicle_InventoryLocationsVehicle" Association="Model.Honda_Dealer_Vehicle_InventoryLocationsVehicle">
+            <End Role="Honda_Dealer_Vehicle_Inventory" EntitySet="Honda_Dealer_Vehicle_Inventory" />
+            <End Role="LocationsVehicle" EntitySet="LocationsVehicles" />
+          </AssociationSet>
+          <AssociationSet Name="Tests_CoreBMISClientProfile" Association="Model.Tests_CoreBMISClientProfile">
+            <End Role="Tests_Core" EntitySet="Tests_Core" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="Tests_CoreLocation" Association="Model.Tests_CoreLocation">
+            <End Role="Tests_Core" EntitySet="Tests_Core" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="ToolAuthorizationBMISClientProfile" Association="Model.ToolAuthorizationBMISClientProfile">
+            <End Role="ToolAuthorization" EntitySet="ToolAuthorizations" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="ToolAuthorizationClientTool" Association="Model.ToolAuthorizationClientTool">
+            <End Role="ToolAuthorization" EntitySet="ToolAuthorizations" />
+            <End Role="ClientTool" EntitySet="ClientTools" />
+          </AssociationSet>
+          <AssociationSet Name="svcLogClientTool" Association="Model.svcLogClientTool">
+            <End Role="svcLog" EntitySet="svcLogs" />
+            <End Role="ClientTool" EntitySet="ClientTools" />
+          </AssociationSet>
+          <AssociationSet Name="ToolServiceUseLocation" Association="Model.ToolServiceUseLocation">
+            <End Role="ToolServiceUse" EntitySet="ToolServiceUses" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="ToolServiceUseClientTool" Association="Model.ToolServiceUseClientTool">
+            <End Role="ToolServiceUse" EntitySet="ToolServiceUses" />
+            <End Role="ClientTool" EntitySet="ClientTools" />
+          </AssociationSet>
+          <AssociationSet Name="Tests_CoreClientTool" Association="Model.Tests_CoreClientTool">
+            <End Role="Tests_Core" EntitySet="Tests_Core" />
+            <End Role="ClientTool" EntitySet="ClientTools" />
+          </AssociationSet>
+          <AssociationSet Name="RegionTreeBMISClientProfile" Association="Model.RegionTreeBMISClientProfile">
+            <End Role="RegionTree" EntitySet="RegionTrees" />
+            <End Role="BMISClientProfile" EntitySet="BMISClientProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="RegionTreeLocation" Association="Model.RegionTreeLocation">
+            <End Role="RegionTree" EntitySet="RegionTrees" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="RegionTreeRegionTree" Association="Model.RegionTreeRegionTree">
+            <End Role="RegionTree" EntitySet="RegionTrees" />
+            <End Role="RegionTree1" EntitySet="RegionTrees" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClientTool">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="ToolType" />
+            <PropertyRef Name="SerialNumber" />
+            <PropertyRef Name="SoftwareVersionNumber" />
+            <PropertyRef Name="LastComm" />
+          </Key>
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="ToolType" Type="Byte" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SoftwareVersionNumber" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="LastComm" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.ClientToolBMISClientProfile" FromRole="ClientTool" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="ToolAuthorization" Relationship="Model.ToolAuthorizationClientTool" FromRole="ClientTool" ToRole="ToolAuthorization" />
+          <NavigationProperty Name="svcLog" Relationship="Model.svcLogClientTool" FromRole="ClientTool" ToRole="svcLog" />
+          <NavigationProperty Name="ToolServiceUse" Relationship="Model.ToolServiceUseClientTool" FromRole="ClientTool" ToRole="ToolServiceUse" />
+          <NavigationProperty Name="Tests_Core" Relationship="Model.Tests_CoreClientTool" FromRole="ClientTool" ToRole="Tests_Core" />
+        </EntityType>
+        <EntityType Name="Honda_Dealer_Vehicle_Inventory">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="TRIM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="COLOR" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MANUFACTURED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="MANUFACTURED_PLANT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIVISION" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DEALER_CODE" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="RECEIVED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="STOCK_NUMBER" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SOLD_DATE" Type="DateTime" Precision="3" />
+          <Property Name="RPT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LocationsVehicles" Relationship="Model.Honda_Dealer_Vehicle_InventoryLocationsVehicle" FromRole="Honda_Dealer_Vehicle_Inventory" ToRole="LocationsVehicle" />
+        </EntityType>
+        <EntityType Name="InvMgmtVINList">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="VinNumber" />
+          </Key>
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="LocationID" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="VinNumber" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="PilotDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrigDeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GoLiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DecisionCatagoryOverride" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.InvMgmtVINListBMISClientProfile" FromRole="InvMgmtVINList" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="Locations" Relationship="Model.InvMgmtVINListLocation" FromRole="InvMgmtVINList" ToRole="Location" />
+          <NavigationProperty Name="Locations1" Relationship="Model.InvMgmtVINListLocation1" FromRole="InvMgmtVINList" ToRole="Location" />
+          <NavigationProperty Name="LocationsVehicles" Relationship="Model.InvMgmtVINListLocationsVehicle" FromRole="InvMgmtVINList" ToRole="LocationsVehicle" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="OEMID" />
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="OEMID" Type="Int16" Nullable="false" />
+          <Property Name="LocationID" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="LocAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocCity" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LocState" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LocZip" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="GeoLocation" Type="Geography" />
+          <Property Name="Region" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="InActive" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.LocationBMISClientProfile" FromRole="Location" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="InvMgmtVINList" Relationship="Model.InvMgmtVINListLocation" FromRole="Location" ToRole="InvMgmtVINList" />
+          <NavigationProperty Name="InvMgmtVINList1" Relationship="Model.InvMgmtVINListLocation1" FromRole="Location" ToRole="InvMgmtVINList" />
+          <NavigationProperty Name="Tests_Core" Relationship="Model.Tests_CoreLocation" FromRole="Location" ToRole="Tests_Core" />
+          <NavigationProperty Name="ToolServiceUse" Relationship="Model.ToolServiceUseLocation" FromRole="Location" ToRole="ToolServiceUse" />
+          <NavigationProperty Name="RegionTree" Relationship="Model.RegionTreeLocation" FromRole="Location" ToRole="RegionTree" />
+        </EntityType>
+        <EntityType Name="LocationsVehicle">
+          <Key>
+            <PropertyRef Name="OEMID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="VIN" />
+            <PropertyRef Name="VehicleMake" />
+            <PropertyRef Name="VehicleModel" />
+            <PropertyRef Name="ModelYear" />
+          </Key>
+          <Property Name="OEMID" Type="Int16" Nullable="false" />
+          <Property Name="LocationID" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="VIN" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleMake" Type="Int64" Nullable="false" />
+          <Property Name="VehicleModel" Type="Int64" Nullable="false" />
+          <Property Name="ModelYear" Type="Int32" Nullable="false" />
+          <Property Name="Make" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExcludeVIN" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.LocationsVehicleBMISClientProfile" FromRole="LocationsVehicle" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="InvMgmtVINList" Relationship="Model.InvMgmtVINListLocationsVehicle" FromRole="LocationsVehicle" ToRole="InvMgmtVINList" />
+          <NavigationProperty Name="Honda_Dealer_Vehicle_Inventory" Relationship="Model.Honda_Dealer_Vehicle_InventoryLocationsVehicle" FromRole="LocationsVehicle" ToRole="Honda_Dealer_Vehicle_Inventory" />
+        </EntityType>
+        <EntityType Name="RegionTree">
+          <Key>
+            <PropertyRef Name="NodeID" />
+          </Key>
+          <Property Name="NodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="Lvl" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="900" FixedLength="false" Unicode="false" />
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.RegionTreeBMISClientProfile" FromRole="RegionTree" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="Locations" Relationship="Model.RegionTreeLocation" FromRole="RegionTree" ToRole="Location" />
+          <NavigationProperty Name="RegionTrees" Relationship="Model.RegionTreeRegionTree" FromRole="RegionTree" ToRole="RegionTree1" />
+          <NavigationProperty Name="RegionTree1" Relationship="Model.RegionTreeRegionTree" FromRole="RegionTree1" ToRole="RegionTree" />
+        </EntityType>
+        <EntityType Name="svcLog">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="TestDatetime" />
+            <PropertyRef Name="SerialNumber" />
+          </Key>
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="TestDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LogType" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ClientIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ClientHostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Firmware" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceFamily" Type="Int64" />
+          <Property Name="ServiceFunction" Type="Int64" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToolType" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.svcLogBMISClientProfile" FromRole="svcLog" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="ClientTools" Relationship="Model.svcLogClientTool" FromRole="svcLog" ToRole="ClientTool" />
+        </EntityType>
+        <EntityType Name="Tests_Core">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="TestDatetime" />
+            <PropertyRef Name="TestIndex" />
+          </Key>
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="LocationID" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="TestDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TestIndex" Type="Int32" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SoftwareVersionNumber" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="SoftwareBuildNumber" Type="Int32" Nullable="false" />
+          <Property Name="AlgorithmVersion" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ToolType" Type="Byte" Nullable="false" />
+          <Property Name="MacAddress" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="TestType" Type="Byte" Nullable="false" />
+          <Property Name="TestLocation" Type="Byte" />
+          <Property Name="Language" Type="Byte" />
+          <Property Name="FinalMeasuredVoltage" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="FinalMeasuredCapacity" Type="Int32" Nullable="false" />
+          <Property Name="FinalDisplayedMeausredCap" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="BatteryDecision" Type="Byte" Nullable="false" />
+          <Property Name="BatteryStateOfCharge" Type="Byte" />
+          <Property Name="BatteryStateOfHealth" Type="Byte" />
+          <Property Name="BatterySohPassFailPoint" Type="Byte" />
+          <Property Name="BatterySohMarginalPoint" Type="Byte" />
+          <Property Name="BatteryUnits" Type="Byte" Nullable="false" />
+          <Property Name="TechnicianID" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="BatteryPostType" Type="Byte" />
+          <Property Name="BatteryLocation" Type="Byte" />
+          <Property Name="BatteryVehicleLocation" Type="Byte" />
+          <Property Name="BatteryType" Type="Byte" />
+          <Property Name="TestApplication" Type="Byte" />
+          <Property Name="VehicleType" Type="Byte" />
+          <Property Name="RatedVoltage" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="RatedCapacity" Type="Int32" Nullable="false" />
+          <Property Name="RatedCapacityPntext" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="SurfaceChargeDetected" Type="Byte" />
+          <Property Name="ChargeQuestion" Type="Byte" />
+          <Property Name="AboveFreezing" Type="Byte" />
+          <Property Name="BatteryTemperature" Type="Int32" Nullable="false" />
+          <Property Name="BatteryTemperatureUnits" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Testcode1" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Testcode2" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Testcode3" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="VinNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="RoNumber" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="DealerVehicleStockNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="BatteryMfgDateCode" Type="DateTime" Precision="0" />
+          <Property Name="BatteryAge" Type="Int32" />
+          <Property Name="RfidTagSn" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="BatterySn" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="BatteryUpc" Type="String" MaxLength="84" FixedLength="false" Unicode="false" />
+          <Property Name="UserScreenAnswer1" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="UserScreenAnswer2" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="UserScreenAnswer3" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="DeepScanResult" Type="Byte" />
+          <Property Name="ShopinfoKeyID" Type="Guid" />
+          <Property Name="UserScreensKeyID" Type="Guid" />
+          <Property Name="CouponsKeyID" Type="Guid" />
+          <Property Name="DmmKeyID" Type="Guid" />
+          <Property Name="CableDropKeyID" Type="Guid" />
+          <Property Name="ChargingTestKeyID" Type="Guid" />
+          <Property Name="SystemTestKeyID" Type="Guid" />
+          <Property Name="PositiveCableResistance" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="NegativeCableResistance" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="VehicleMake" Type="Int64" />
+          <Property Name="VehicleModel" Type="Int64" />
+          <Property Name="TransmittedOn" Type="DateTime" Precision="3" />
+          <Property Name="ImportedOn" Type="DateTime" Precision="3" />
+          <Property Name="SrcFileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleYear" Type="Int32" />
+          <Property Name="DistributorNumber" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="WasBatteryOriginal" Type="Byte" />
+          <Property Name="VehicleMileage" Type="Int64" />
+          <Property Name="DCAResults" Type="Byte" />
+          <Property Name="DCAStopCase" Type="Byte" />
+          <Property Name="DCAVoltageSlope" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="DCAVoltageDrop" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="VehicleIDNumber" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="VinCaptureMethod" Type="Byte" />
+          <Property Name="VehicleTechnologyType" Type="Byte" />
+          <Property Name="VehicleMileageUnits" Type="Byte" />
+          <Property Name="VehicleColor" Type="Int32" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleLicensePlate" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="IsAddedToDecisionCounts" Type="Boolean" Nullable="false" />
+          <Property Name="IsAddedToProcessPerformanceCounts" Type="Boolean" Nullable="false" />
+          <Property Name="ConductanceDecision" Type="Byte" />
+          <Property Name="EngineTemperature" Type="Int32" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.Tests_CoreBMISClientProfile" FromRole="Tests_Core" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="Locations" Relationship="Model.Tests_CoreLocation" FromRole="Tests_Core" ToRole="Location" />
+          <NavigationProperty Name="ClientTools" Relationship="Model.Tests_CoreClientTool" FromRole="Tests_Core" ToRole="ClientTool" />
+        </EntityType>
+        <EntityType Name="ToolServiceUse">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="ToolType" />
+            <PropertyRef Name="SerialNumber" />
+            <PropertyRef Name="SoftwareVersionNumber" />
+            <PropertyRef Name="ServiceFamily" />
+            <PropertyRef Name="ServiceFunction" />
+            <PropertyRef Name="TransmittedOn" />
+          </Key>
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="LocationID" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="ToolType" Type="Int32" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SoftwareVersionNumber" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceFamily" Type="Int64" Nullable="false" />
+          <Property Name="ServiceFunction" Type="Int64" Nullable="false" />
+          <Property Name="TransmittedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.ToolServiceUseBMISClientProfile" FromRole="ToolServiceUse" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="Locations" Relationship="Model.ToolServiceUseLocation" FromRole="ToolServiceUse" ToRole="Location" />
+          <NavigationProperty Name="ClientTools" Relationship="Model.ToolServiceUseClientTool" FromRole="ToolServiceUse" ToRole="ClientTool" />
+        </EntityType>
+        <EntityType Name="AspNetUserClientRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="Int16" Nullable="false" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.AspNetUserClientRoleBMISClientProfile" FromRole="AspNetUserClientRole" ToRole="BMISClientProfile" />
+        </EntityType>
+        <EntityType Name="BMISClientProfile">
+          <Key>
+            <PropertyRef Name="OEMID" />
+          </Key>
+          <Property Name="OEMID" Type="Int16" Nullable="false" />
+          <Property Name="Descr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FeatureSet" Type="Binary" MaxLength="8" FixedLength="true" />
+          <Property Name="AccessToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ToolServiceUse" Relationship="Model.ToolServiceUseBMISClientProfile" FromRole="BMISClientProfile" ToRole="ToolServiceUse" />
+          <NavigationProperty Name="TreeTranslation" Relationship="Model.TreeTranslationBMISClientProfile" FromRole="BMISClientProfile" ToRole="TreeTranslation" />
+          <NavigationProperty Name="ClientTool" Relationship="Model.ClientToolBMISClientProfile" FromRole="BMISClientProfile" ToRole="ClientTool" />
+          <NavigationProperty Name="Location" Relationship="Model.LocationBMISClientProfile" FromRole="BMISClientProfile" ToRole="Location" />
+          <NavigationProperty Name="LocationsVehicle" Relationship="Model.LocationsVehicleBMISClientProfile" FromRole="BMISClientProfile" ToRole="LocationsVehicle" />
+          <NavigationProperty Name="svcLog" Relationship="Model.svcLogBMISClientProfile" FromRole="BMISClientProfile" ToRole="svcLog" />
+          <NavigationProperty Name="InvMgmtVINList" Relationship="Model.InvMgmtVINListBMISClientProfile" FromRole="BMISClientProfile" ToRole="InvMgmtVINList" />
+          <NavigationProperty Name="AspNetUserClientRole" Relationship="Model.AspNetUserClientRoleBMISClientProfile" FromRole="BMISClientProfile" ToRole="AspNetUserClientRole" />
+          <NavigationProperty Name="Tests_Core" Relationship="Model.Tests_CoreBMISClientProfile" FromRole="BMISClientProfile" ToRole="Tests_Core" />
+          <NavigationProperty Name="ToolAuthorization" Relationship="Model.ToolAuthorizationBMISClientProfile" FromRole="BMISClientProfile" ToRole="ToolAuthorization" />
+          <NavigationProperty Name="RegionTree" Relationship="Model.RegionTreeBMISClientProfile" FromRole="BMISClientProfile" ToRole="RegionTree" />
+        </EntityType>
+        <EntityType Name="ToolAuthorization">
+          <Key>
+            <PropertyRef Name="SerialNumber" />
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="AuthorizationCode" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.ToolAuthorizationBMISClientProfile" FromRole="ToolAuthorization" ToRole="BMISClientProfile" />
+          <NavigationProperty Name="ClientTools" Relationship="Model.ToolAuthorizationClientTool" FromRole="ToolAuthorization" ToRole="ClientTool" />
+        </EntityType>
+        <EntityType Name="TreeTranslation">
+          <Key>
+            <PropertyRef Name="ClientID" />
+            <PropertyRef Name="LangNum" />
+            <PropertyRef Name="TableNum" />
+            <PropertyRef Name="TransNum" />
+          </Key>
+          <Property Name="ClientID" Type="Int16" Nullable="false" />
+          <Property Name="LangNum" Type="Byte" Nullable="false" />
+          <Property Name="TableNum" Type="Int32" Nullable="false" />
+          <Property Name="TransNum" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BMISClientProfiles" Relationship="Model.TreeTranslationBMISClientProfile" FromRole="TreeTranslation" ToRole="BMISClientProfile" />
+        </EntityType>
+        <Association Name="ToolServiceUseBMISClientProfile">
+          <End Type="Model.ToolServiceUse" Role="ToolServiceUse" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="TreeTranslationBMISClientProfile">
+          <End Type="Model.TreeTranslation" Role="TreeTranslation" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientToolBMISClientProfile">
+          <End Type="Model.ClientTool" Role="ClientTool" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="LocationBMISClientProfile">
+          <End Type="Model.Location" Role="Location" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="LocationsVehicleBMISClientProfile">
+          <End Type="Model.LocationsVehicle" Role="LocationsVehicle" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="svcLogBMISClientProfile">
+          <End Type="Model.svcLog" Role="svcLog" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="InvMgmtVINListBMISClientProfile">
+          <End Type="Model.InvMgmtVINList" Role="InvMgmtVINList" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="AspNetUserClientRoleBMISClientProfile">
+          <End Type="Model.AspNetUserClientRole" Role="AspNetUserClientRole" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="InvMgmtVINListLocation">
+          <End Type="Model.InvMgmtVINList" Role="InvMgmtVINList" Multiplicity="1" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="InvMgmtVINListLocation1">
+          <End Type="Model.InvMgmtVINList" Role="InvMgmtVINList" Multiplicity="1" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="InvMgmtVINListLocationsVehicle">
+          <End Type="Model.InvMgmtVINList" Role="InvMgmtVINList" Multiplicity="1" />
+          <End Type="Model.LocationsVehicle" Role="LocationsVehicle" Multiplicity="*" />
+        </Association>
+        <Association Name="Honda_Dealer_Vehicle_InventoryLocationsVehicle">
+          <End Type="Model.Honda_Dealer_Vehicle_Inventory" Role="Honda_Dealer_Vehicle_Inventory" Multiplicity="1" />
+          <End Type="Model.LocationsVehicle" Role="LocationsVehicle" Multiplicity="*" />
+        </Association>
+        <Association Name="Tests_CoreBMISClientProfile">
+          <End Type="Model.Tests_Core" Role="Tests_Core" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="Tests_CoreLocation">
+          <End Type="Model.Tests_Core" Role="Tests_Core" Multiplicity="1" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="ToolAuthorizationBMISClientProfile">
+          <End Type="Model.ToolAuthorization" Role="ToolAuthorization" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="ToolAuthorizationClientTool">
+          <End Type="Model.ToolAuthorization" Role="ToolAuthorization" Multiplicity="1" />
+          <End Type="Model.ClientTool" Role="ClientTool" Multiplicity="*" />
+        </Association>
+        <Association Name="svcLogClientTool">
+          <End Type="Model.svcLog" Role="svcLog" Multiplicity="1" />
+          <End Type="Model.ClientTool" Role="ClientTool" Multiplicity="*" />
+        </Association>
+        <Association Name="ToolServiceUseLocation">
+          <End Type="Model.ToolServiceUse" Role="ToolServiceUse" Multiplicity="1" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="ToolServiceUseClientTool">
+          <End Type="Model.ToolServiceUse" Role="ToolServiceUse" Multiplicity="1" />
+          <End Type="Model.ClientTool" Role="ClientTool" Multiplicity="*" />
+        </Association>
+        <Association Name="Tests_CoreClientTool">
+          <End Type="Model.Tests_Core" Role="Tests_Core" Multiplicity="1" />
+          <End Type="Model.ClientTool" Role="ClientTool" Multiplicity="*" />
+        </Association>
+        <Association Name="RegionTreeBMISClientProfile">
+          <End Type="Model.RegionTree" Role="RegionTree" Multiplicity="1" />
+          <End Type="Model.BMISClientProfile" Role="BMISClientProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="RegionTreeLocation">
+          <End Type="Model.RegionTree" Role="RegionTree" Multiplicity="1" />
+          <End Type="Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="RegionTreeRegionTree">
+          <End Type="Model.RegionTree" Role="RegionTree" Multiplicity="1" />
+          <End Type="Model.RegionTree" Role="RegionTree1" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ClientTools">
+            <EntityTypeMapping TypeName="Model.ClientTool">
+              <MappingFragment StoreEntitySet="ClientTools">
+                <ScalarProperty Name="LastComm" ColumnName="LastComm" />
+                <ScalarProperty Name="SoftwareVersionNumber" ColumnName="SoftwareVersionNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="ToolType" ColumnName="ToolType" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Honda_Dealer_Vehicle_Inventory">
+            <EntityTypeMapping TypeName="Model.Honda_Dealer_Vehicle_Inventory">
+              <MappingFragment StoreEntitySet="Honda_Dealer_Vehicle_Inventory">
+                <ScalarProperty Name="RPT_DATE" ColumnName="RPT_DATE" />
+                <ScalarProperty Name="SOLD_DATE" ColumnName="SOLD_DATE" />
+                <ScalarProperty Name="STOCK_NUMBER" ColumnName="STOCK_NUMBER" />
+                <ScalarProperty Name="RECEIVED_DATE" ColumnName="RECEIVED_DATE" />
+                <ScalarProperty Name="DEALER_CODE" ColumnName="DEALER_CODE" />
+                <ScalarProperty Name="DIVISION" ColumnName="DIVISION" />
+                <ScalarProperty Name="MANUFACTURED_PLANT" ColumnName="MANUFACTURED_PLANT" />
+                <ScalarProperty Name="MANUFACTURED_DATE" ColumnName="MANUFACTURED_DATE" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="TRIM" ColumnName="TRIM" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvMgmtVINLists">
+            <EntityTypeMapping TypeName="Model.InvMgmtVINList">
+              <MappingFragment StoreEntitySet="InvMgmtVINList">
+                <ScalarProperty Name="DecisionCatagoryOverride" ColumnName="DecisionCatagoryOverride" />
+                <ScalarProperty Name="GoLiveDate" ColumnName="GoLiveDate" />
+                <ScalarProperty Name="OrigDeliveryDate" ColumnName="OrigDeliveryDate" />
+                <ScalarProperty Name="PilotDate" ColumnName="PilotDate" />
+                <ScalarProperty Name="VinNumber" ColumnName="VinNumber" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="Model.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="GeoLocation" ColumnName="GeoLocation" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="LocZip" ColumnName="LocZip" />
+                <ScalarProperty Name="LocState" ColumnName="LocState" />
+                <ScalarProperty Name="LocCity" ColumnName="LocCity" />
+                <ScalarProperty Name="LocAddress" ColumnName="LocAddress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OEMID" ColumnName="OEMID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationsVehicles">
+            <EntityTypeMapping TypeName="Model.LocationsVehicle">
+              <MappingFragment StoreEntitySet="LocationsVehicles">
+                <ScalarProperty Name="ExcludeVIN" ColumnName="ExcludeVIN" />
+                <ScalarProperty Name="LastSeen" ColumnName="LastSeen" />
+                <ScalarProperty Name="FirstSeen" ColumnName="FirstSeen" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OEMID" ColumnName="OEMID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionTrees">
+            <EntityTypeMapping TypeName="Model.RegionTree">
+              <MappingFragment StoreEntitySet="RegionTree">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Lvl" ColumnName="Lvl" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="svcLogs">
+            <EntityTypeMapping TypeName="Model.svcLog">
+              <MappingFragment StoreEntitySet="svcLog">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ToolType" ColumnName="ToolType" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ServiceFunction" ColumnName="ServiceFunction" />
+                <ScalarProperty Name="ServiceFamily" ColumnName="ServiceFamily" />
+                <ScalarProperty Name="Firmware" ColumnName="Firmware" />
+                <ScalarProperty Name="ClientHostName" ColumnName="ClientHostName" />
+                <ScalarProperty Name="ClientIP" ColumnName="ClientIP" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="TestDatetime" ColumnName="TestDatetime" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests_Core">
+            <EntityTypeMapping TypeName="Model.Tests_Core">
+              <MappingFragment StoreEntitySet="Tests_Core">
+                <ScalarProperty Name="EngineTemperature" ColumnName="EngineTemperature" />
+                <ScalarProperty Name="ConductanceDecision" ColumnName="ConductanceDecision" />
+                <ScalarProperty Name="IsAddedToProcessPerformanceCounts" ColumnName="IsAddedToProcessPerformanceCounts" />
+                <ScalarProperty Name="IsAddedToDecisionCounts" ColumnName="IsAddedToDecisionCounts" />
+                <ScalarProperty Name="VehicleLicensePlate" ColumnName="VehicleLicensePlate" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="VehicleColor" ColumnName="VehicleColor" />
+                <ScalarProperty Name="VehicleMileageUnits" ColumnName="VehicleMileageUnits" />
+                <ScalarProperty Name="VehicleTechnologyType" ColumnName="VehicleTechnologyType" />
+                <ScalarProperty Name="VinCaptureMethod" ColumnName="VinCaptureMethod" />
+                <ScalarProperty Name="VehicleIDNumber" ColumnName="VehicleIDNumber" />
+                <ScalarProperty Name="DCAVoltageDrop" ColumnName="DCAVoltageDrop" />
+                <ScalarProperty Name="DCAVoltageSlope" ColumnName="DCAVoltageSlope" />
+                <ScalarProperty Name="DCAStopCase" ColumnName="DCAStopCase" />
+                <ScalarProperty Name="DCAResults" ColumnName="DCAResults" />
+                <ScalarProperty Name="VehicleMileage" ColumnName="VehicleMileage" />
+                <ScalarProperty Name="WasBatteryOriginal" ColumnName="WasBatteryOriginal" />
+                <ScalarProperty Name="DistributorNumber" ColumnName="DistributorNumber" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="SrcFileName" ColumnName="SrcFileName" />
+                <ScalarProperty Name="ImportedOn" ColumnName="ImportedOn" />
+                <ScalarProperty Name="TransmittedOn" ColumnName="TransmittedOn" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="NegativeCableResistance" ColumnName="NegativeCableResistance" />
+                <ScalarProperty Name="PositiveCableResistance" ColumnName="PositiveCableResistance" />
+                <ScalarProperty Name="SystemTestKeyID" ColumnName="SystemTestKeyID" />
+                <ScalarProperty Name="ChargingTestKeyID" ColumnName="ChargingTestKeyID" />
+                <ScalarProperty Name="CableDropKeyID" ColumnName="CableDropKeyID" />
+                <ScalarProperty Name="DmmKeyID" ColumnName="DmmKeyID" />
+                <ScalarProperty Name="CouponsKeyID" ColumnName="CouponsKeyID" />
+                <ScalarProperty Name="UserScreensKeyID" ColumnName="UserScreensKeyID" />
+                <ScalarProperty Name="ShopinfoKeyID" ColumnName="ShopinfoKeyID" />
+                <ScalarProperty Name="DeepScanResult" ColumnName="DeepScanResult" />
+                <ScalarProperty Name="UserScreenAnswer3" ColumnName="UserScreenAnswer3" />
+                <ScalarProperty Name="UserScreenAnswer2" ColumnName="UserScreenAnswer2" />
+                <ScalarProperty Name="UserScreenAnswer1" ColumnName="UserScreenAnswer1" />
+                <ScalarProperty Name="BatteryUpc" ColumnName="BatteryUpc" />
+                <ScalarProperty Name="BatterySn" ColumnName="BatterySn" />
+                <ScalarProperty Name="RfidTagSn" ColumnName="RfidTagSn" />
+                <ScalarProperty Name="BatteryAge" ColumnName="BatteryAge" />
+                <ScalarProperty Name="BatteryMfgDateCode" ColumnName="BatteryMfgDateCode" />
+                <ScalarProperty Name="DealerVehicleStockNumber" ColumnName="DealerVehicleStockNumber" />
+                <ScalarProperty Name="RoNumber" ColumnName="RoNumber" />
+                <ScalarProperty Name="VinNumber" ColumnName="VinNumber" />
+                <ScalarProperty Name="Testcode3" ColumnName="Testcode3" />
+                <ScalarProperty Name="Testcode2" ColumnName="Testcode2" />
+                <ScalarProperty Name="Testcode1" ColumnName="Testcode1" />
+                <ScalarProperty Name="BatteryTemperatureUnits" ColumnName="BatteryTemperatureUnits" />
+                <ScalarProperty Name="BatteryTemperature" ColumnName="BatteryTemperature" />
+                <ScalarProperty Name="AboveFreezing" ColumnName="AboveFreezing" />
+                <ScalarProperty Name="ChargeQuestion" ColumnName="ChargeQuestion" />
+                <ScalarProperty Name="SurfaceChargeDetected" ColumnName="SurfaceChargeDetected" />
+                <ScalarProperty Name="RatedCapacityPntext" ColumnName="RatedCapacityPntext" />
+                <ScalarProperty Name="RatedCapacity" ColumnName="RatedCapacity" />
+                <ScalarProperty Name="RatedVoltage" ColumnName="RatedVoltage" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="TestApplication" ColumnName="TestApplication" />
+                <ScalarProperty Name="BatteryType" ColumnName="BatteryType" />
+                <ScalarProperty Name="BatteryVehicleLocation" ColumnName="BatteryVehicleLocation" />
+                <ScalarProperty Name="BatteryLocation" ColumnName="BatteryLocation" />
+                <ScalarProperty Name="BatteryPostType" ColumnName="BatteryPostType" />
+                <ScalarProperty Name="TechnicianID" ColumnName="TechnicianID" />
+                <ScalarProperty Name="BatteryUnits" ColumnName="BatteryUnits" />
+                <ScalarProperty Name="BatterySohMarginalPoint" ColumnName="BatterySohMarginalPoint" />
+                <ScalarProperty Name="BatterySohPassFailPoint" ColumnName="BatterySohPassFailPoint" />
+                <ScalarProperty Name="BatteryStateOfHealth" ColumnName="BatteryStateOfHealth" />
+                <ScalarProperty Name="BatteryStateOfCharge" ColumnName="BatteryStateOfCharge" />
+                <ScalarProperty Name="BatteryDecision" ColumnName="BatteryDecision" />
+                <ScalarProperty Name="FinalDisplayedMeausredCap" ColumnName="FinalDisplayedMeausredCap" />
+                <ScalarProperty Name="FinalMeasuredCapacity" ColumnName="FinalMeasuredCapacity" />
+                <ScalarProperty Name="FinalMeasuredVoltage" ColumnName="FinalMeasuredVoltage" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="TestLocation" ColumnName="TestLocation" />
+                <ScalarProperty Name="TestType" ColumnName="TestType" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="ToolType" ColumnName="ToolType" />
+                <ScalarProperty Name="AlgorithmVersion" ColumnName="AlgorithmVersion" />
+                <ScalarProperty Name="SoftwareBuildNumber" ColumnName="SoftwareBuildNumber" />
+                <ScalarProperty Name="SoftwareVersionNumber" ColumnName="SoftwareVersionNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="TestIndex" ColumnName="TestIndex" />
+                <ScalarProperty Name="TestDatetime" ColumnName="TestDatetime" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolServiceUses">
+            <EntityTypeMapping TypeName="Model.ToolServiceUse">
+              <MappingFragment StoreEntitySet="ToolServiceUse">
+                <ScalarProperty Name="ClientIP" ColumnName="ClientIP" />
+                <ScalarProperty Name="TransmittedOn" ColumnName="TransmittedOn" />
+                <ScalarProperty Name="ServiceFunction" ColumnName="ServiceFunction" />
+                <ScalarProperty Name="ServiceFamily" ColumnName="ServiceFamily" />
+                <ScalarProperty Name="SoftwareVersionNumber" ColumnName="SoftwareVersionNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="ToolType" ColumnName="ToolType" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClientRoles">
+            <EntityTypeMapping TypeName="Model.AspNetUserClientRole">
+              <MappingFragment StoreEntitySet="AspNetUserClientRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BMISClientProfiles">
+            <EntityTypeMapping TypeName="Model.BMISClientProfile">
+              <MappingFragment StoreEntitySet="BMISClientProfile">
+                <ScalarProperty Name="AccessToDate" ColumnName="AccessToDate" />
+                <ScalarProperty Name="FeatureSet" ColumnName="FeatureSet" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="OEMID" ColumnName="OEMID" />
+                <Condition ColumnName="OEMID" Value="" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToolAuthorizations">
+            <EntityTypeMapping TypeName="Model.ToolAuthorization">
+              <MappingFragment StoreEntitySet="ToolAuthorization">
+                <ScalarProperty Name="AuthorizationCode" ColumnName="AuthorizationCode" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TreeTranslations">
+            <EntityTypeMapping TypeName="Model.TreeTranslation">
+              <MappingFragment StoreEntitySet="TreeTranslations">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TransNum" ColumnName="TransNum" />
+                <ScalarProperty Name="TableNum" ColumnName="TableNum" />
+                <ScalarProperty Name="LangNum" ColumnName="LangNum" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
